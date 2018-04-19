@@ -6,9 +6,10 @@ public class Player : MonoBehaviour {
 
     public GameObject trailObject;
     public bool touch;
+    public float force = 300f;
 
     // Use this for initialization
-	void Start () {
+    void Start () {
         trailObject.SetActive(false);
 	}
 	
@@ -43,5 +44,10 @@ public class Player : MonoBehaviour {
             ActivateTrail();
             touch = false;
         }
+    }
+
+    public void Jump()
+    {
+        GetComponent<Rigidbody>().AddForce(transform.up * force);
     }
 }
