@@ -5,19 +5,23 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public Player player;
-    public float force = 200f;
+    public float force = 300f;
     private int stackScore = 0;
     bool timerStart = false;
-    public float timer = 5f;
+    public float timer = 0.5f;
     private float resetTime;
-    public Transform floor;
+    public GameObject floor;
+    public float difficulty=1f;
+    int counter=1;
+
+    GameObject newFloor;
 
     //    public TouchBox touchbox;
 
     // Use this for initialization
     private void Start()
     {
-
+        newFloor = floor;
     }
 
     // Update is called once per frame
@@ -25,24 +29,29 @@ public class Game : MonoBehaviour
     {
         if (player.touch == true && Input.GetMouseButtonDown(0))
         {
+            Pos();
             Jump();
-            Timer();
             stackScore++;
         }
-        if (timerStart == true)
+
+        if (player.touch == false)
         {
-            timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                Instantiate(floor, new Vector3(0, floor.transform.position.y + (stackScore * 0.3f), 0), Quaternion.identity);
-                timerStart = false;
-                timer = resetTime;
-            }
+            newFloor.transform.position = Vector3.Lerp(newFloor.transform.position, new Vector3(0, newFloor.transform.position.y, 0), Time.deltaTime * difficulty);
         }
+
 
     }
 
-    private void Jump()
+    private void Pos()
+    {
+        float temp = Random.Range(0.0f, 10.0f);
+        if (temp <= 4)
+            x = -2.5f;
+        if (temp >= 5)
+            x = 2.5f;
+    }
+
+    public void Jump()
     {
         player.GetComponent<Rigidbody>().AddForce(transform.up * force);
     }
@@ -54,5 +63,10 @@ public class Game : MonoBehaviour
             resetTime = timer;
             timerStart = true;
         }
+    }
+
+    private void MoveBlock()
+    {
+
     }
 }
