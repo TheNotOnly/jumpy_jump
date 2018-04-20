@@ -8,7 +8,7 @@ public class TimerClock : MonoBehaviour {
 
     public float timer = 0.5f;
     bool timerStart = false;
-    float resetTime;
+    public float resetTime;
 
 	// Use this for initialization
 	public void Start () {
@@ -20,13 +20,11 @@ public class TimerClock : MonoBehaviour {
 		if (timerStart == true)
         {
             timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
+/*            if (timer <= 0)
+           {
                 timer = resetTime;
-                timerStart = false;
-                NewBlock.AddBlock();
             }
-        }
+*/        }
 	}
 
     public void StartTimer()

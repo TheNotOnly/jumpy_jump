@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     public GameObject trailObject;
     public bool touch;
     public float force = 300f;
+    bool onFloor = true;
 
     // Use this for initialization
     void Start () {
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name != null)
+        if (collision.gameObject.name == "Floor Clone" )
         {
             DeactivateTrail();
             touch = true;
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name != null)
+        if (collision.gameObject.name == "Floor Clone")
         {
             ActivateTrail();
             touch = false;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class NewBlock : MonoBehaviour {
 
     public Player player;
+    public TimerClock timer;
 
     public GameObject floor;
     GameObject newFloor;
@@ -22,6 +23,12 @@ public class NewBlock : MonoBehaviour {
         if (player.touch == false)
         {
             newFloor.transform.position = Vector3.Lerp(newFloor.transform.position, new Vector3(0, newFloor.transform.position.y, 0), Time.deltaTime * difficulty);
+        }
+
+        if (timer.timer <=0 && player.touch)
+        {
+            AddBlock();
+            timer.timer = timer.resetTime;
         }
     }
 
