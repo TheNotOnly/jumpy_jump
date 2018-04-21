@@ -22,7 +22,7 @@ public class TimerClock : MonoBehaviour {
             timer -= Time.deltaTime;
 /*            if (timer <= 0)
            {
-                timer = resetTime;
+                ResetTimer();
             }
 */        }
 	}
@@ -30,5 +30,21 @@ public class TimerClock : MonoBehaviour {
     public void StartTimer()
     {
         timerStart = true;
+    }
+
+    public void ResetTimer()
+    {
+        timer = resetTime;
+    }
+
+    public void StopTimer()
+    {
+        timerStart = false;
+    }
+
+    public void StopResetTime()
+    {
+        timerStart = false;
+        timer = resetTime;
     }
 }

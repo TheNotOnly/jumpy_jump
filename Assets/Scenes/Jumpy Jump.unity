@@ -354,7 +354,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 300918187
+  randomSeed: -1050524558
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7214,6 +7214,74 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &801338668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 801338672}
+  - component: {fileID: 801338671}
+  - component: {fileID: 801338670}
+  - component: {fileID: 801338669}
+  m_Layer: 0
+  m_Name: ResetBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &801338669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801338668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6709034e19a3ebc4199aefa174c3475b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetBox: {fileID: 801338668}
+  newblock: {fileID: 1037005565}
+--- !u!65 &801338670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801338668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -1.1, y: 0, z: 0}
+--- !u!65 &801338671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801338668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 1.1, y: 0, z: 0}
+--- !u!4 &801338672
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801338668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.35, z: 0}
+  m_LocalScale: {x: 2, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &843396667
 GameObject:
   m_ObjectHideFlags: 0
@@ -7244,6 +7312,7 @@ MonoBehaviour:
   player: {fileID: 1210529939}
   NewBlock: {fileID: 1037005565}
   timer: {fileID: 1900056814}
+  onFloor: 1
 --- !u!4 &843396669
 Transform:
   m_ObjectHideFlags: 0
@@ -7423,7 +7492,9 @@ MonoBehaviour:
   player: {fileID: 1210529939}
   timer: {fileID: 1900056814}
   floor: {fileID: 592330823}
-  difficulty: 2.5
+  counter: 1
+  difficulty: 5
+  blockmove: 1
 --- !u!4 &1037005566
 Transform:
   m_ObjectHideFlags: 0
@@ -7484,7 +7555,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!23 &1210529936
 MeshRenderer:
@@ -7550,6 +7621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149297fd9d475ea4eb119ff66e987fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 1900056814}
+  newblock: {fileID: 1037005565}
+  game: {fileID: 843396668}
   trailObject: {fileID: 718752196}
   touch: 0
   force: 300
@@ -7581,7 +7655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewBlock: {fileID: 1037005565}
-  timer: 2
+  timer: 1
   resetTime: 0
 --- !u!4 &1900056815
 Transform:

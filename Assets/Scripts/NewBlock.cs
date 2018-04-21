@@ -9,9 +9,11 @@ public class NewBlock : MonoBehaviour {
 
     public GameObject floor;
     GameObject newFloor;
-    int counter = 1;
+    public int counter = 1;
     float x;
     public float difficulty = 1f;
+    public bool blockmove = true;
+
 
     // Use this for initialization
     void Start () {
@@ -20,22 +22,24 @@ public class NewBlock : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (player.touch == false)
+        if (player.touch == false  || player.touch==true && blockmove==true)
         {
-            newFloor.transform.position = Vector3.Lerp(newFloor.transform.position, new Vector3(0, newFloor.transform.position.y, 0), Time.deltaTime * difficulty);
+            newFloor.transform.position = Vector3.Lerp(newFloor.transform.position, new Vector3(0, newFloor.transform.position.y, 0), difficulty * 0.01f);
         }
 
-        if (timer.timer <=0 && player.touch)
+        if (timer.timer <=0 && player.touch == true)
         {
             AddBlock();
-            timer.timer = timer.resetTime;
+            timer.StopResetTime();
+            blockmove = true;
         }
     }
 
     public void AddBlock()
     {
         Pos();
-        newFloor = Instantiate(floor, new Vector3(x, floor.transform.position.y + (counter * 0.7f), 0), Quaternion.identity);
+        Vector3 newpos = new Vector3(x, floor.transform.position.y + (counter * 0.7f), 0);
+        newFloor = Instantiate(floor, newpos, Quaternion.identity);
         counter++;
     }
 
@@ -43,8 +47,8 @@ public class NewBlock : MonoBehaviour {
     {
         float temp = Random.Range(0.0f, 10.0f);
         if (temp <= 4)
-            x = Random.Range(-5f,-3f);
+            x = Random.Range(-4f,-3f);
         if (temp >= 5)
-            x = Random.Range(3f,5f);
+            x = Random.Range(3f,4f);
     }
 }

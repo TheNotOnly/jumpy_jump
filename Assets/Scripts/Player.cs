@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public TimerClock timer;
+    public NewBlock newblock;
+    public Game game;
+
     public GameObject trailObject;
     public bool touch;
     public float force = 300f;
-    bool onFloor = true;
-
+    
     // Use this for initialization
     void Start () {
         trailObject.SetActive(false);
+        touch = true;
 	}
 	
 	// Update is called once per frame
@@ -31,19 +35,22 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Floor Clone" )
+        if (collision.gameObject.name == "Floor(Clone)" )
         {
             DeactivateTrail();
             touch = true;
+            timer.StartTimer();
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name == "Floor Clone")
+        if (collision.gameObject.name == "Floor(Clone)")
         {
             ActivateTrail();
             touch = false;
+            timer.StopResetTime();
+            newblock.blockmove = false;
         }
     }
 

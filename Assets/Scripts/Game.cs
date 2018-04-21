@@ -8,13 +8,14 @@ public class Game : MonoBehaviour
     private int stackScore = 0;
     public NewBlock NewBlock;
     public TimerClock timer;
+    public bool onFloor = true;
 
     //    public TouchBox touchbox;
 
     // Use this for initialization
     private void Start()
     {
-        timer.StartTimer();
+        
     }
 
     // Update is called once per frame
@@ -22,7 +23,13 @@ public class Game : MonoBehaviour
     {
         if (player.touch == true && Input.GetMouseButtonDown(0))
         {
-            NewBlock.AddBlock();
+            if (onFloor == true)
+            {
+                timer.StartTimer();
+                NewBlock.AddBlock();
+                onFloor = false;
+                player.touch = false;
+            }
             player.Jump();
             stackScore++;
         }
