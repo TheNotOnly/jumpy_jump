@@ -24,6 +24,11 @@ public class NewBlock : MonoBehaviour {
 	void Update () {
         if (player.touch == false  || player.touch==true && blockmove==true)
         {
+            if (counter >= 10)
+                difficulty = difficulty + 1;
+            if (counter >= 15)
+                difficulty = difficulty + 2;
+
             newFloor.transform.position = Vector3.Lerp(newFloor.transform.position, new Vector3(0, newFloor.transform.position.y, 0), difficulty * 0.01f);
         }
 
