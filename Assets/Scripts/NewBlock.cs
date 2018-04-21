@@ -13,22 +13,31 @@ public class NewBlock : MonoBehaviour {
     float x;
     public float difficulty = 1f;
     public bool blockmove = true;
-
+    float[] difficultymult=new float[100];
 
     // Use this for initialization
     void Start () {
         newFloor = floor;
-	}
+        difficultymult[0] = difficulty + 0;
+        difficultymult[1] = difficulty + 2;
+        difficultymult[2] = difficulty + 4;
+        difficultymult[3] = difficulty + 6;
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        if (counter <= 10)
+            difficulty = difficultymult[0];
+        if (counter > 10 && counter <= 15)
+            difficulty = difficultymult[1];
+        if (counter > 15 && counter <= 20)
+            difficulty = difficultymult[2];
+        if (counter > 20 && counter <= 55)
+            difficulty = difficultymult[3];
+
         if (player.touch == false  || player.touch==true && blockmove==true)
         {
-            if (counter >= 10)
-                difficulty = difficulty + 1;
-            if (counter >= 15)
-                difficulty = difficulty + 2;
-
             newFloor.transform.position = Vector3.Lerp(newFloor.transform.position, new Vector3(0, newFloor.transform.position.y, 0), difficulty * 0.01f);
         }
 
